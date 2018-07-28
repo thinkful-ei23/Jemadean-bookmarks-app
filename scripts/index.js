@@ -1,5 +1,5 @@
 'use strict';
-/* global myBookmarks, $ */
+/* global myBookmarks, store, api,  $ */
 const store = {
   items: [
     {id: 1, title: 'Coding 101', rating: 5, expanded: true, url: 'https://thinkful.com', description: "Test"},

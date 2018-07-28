@@ -1,3 +1,21 @@
 h1 {
   color: blue;
+  margin-left: 2px;
+}
+
+.add-bookmark {
+  margin-left: 2px;
+}
+
+#js-add-bookmark-form {
+  background-color: cornflowerblue;
+  padding-top: 5px;
+}
+
+.text-input {
+  display: inline-block;
+}
+
+.rating {
+  display: inline-block;
 }
