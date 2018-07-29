@@ -53,25 +53,25 @@ const myBookmarks = (function(){
   }
 
   //Function to generate the bookmark element
-  // function generateBookmarkElement(bookmark) {
-  //   return `
-  //   <li class="js-item-element" data-bookmark-id="${bookmark.id}">
-  //       <p class="title-bar">${bookmark.title}</p> 
-  //       <div class="details-card">
-  //         <article class="details"></article>
-  //           <p class="description">${bookmark.desc}</p>
-  //           <p><a href=${bookmark.url}>Visit Site</a></p>
-  //         </article>
-  //       </div>
-  //       <p class="rating-bar">${bookmark.rating}</p>
-  //     </li>`;
-  // }
+  function generateBookmarkElement(bookmark) {
+    return `
+    <li class="js-item-element" data-bookmark-id="${bookmark.id}">
+        <p class="title-bar">${bookmark.title}</p> 
+        <div class="details-card">
+          <article class="details"></article>
+            <p class="description">${bookmark.desc}</p>
+            <p><a href=${bookmark.url}>Visit Site</a></p>
+          </article>
+        </div>
+        <p class="rating-bar">${bookmark.rating}</p>
+      </li>`;
+  }
 
-  //Function to generate 
-  // function generateStringOfBookmarks(myBookmarks) {
-  //   const bookmarks = myBookmarks.map((bookmark) => generateBookmarkElement(bookmark));
-  //   return bookmarks.join('');
-  // }
+  //Function to generate string that will next get rendered to DOM
+  function generateStringOfBookmarks(myBookmarks) {
+    const bookmarks = myBookmarks.map((bookmark) => generateBookmarkElement(bookmark));
+    return bookmarks.join('');
+  }
 
 
   //Function to render the page 
@@ -79,6 +79,11 @@ const myBookmarks = (function(){
     if (store.adding) {
       $('#js-add-bookmark-form').show();
     } else $('#js-add-bookmark-form').hide();
+
+    //render the bookmarks in the DOM
+    let bookmarks = store.bookmarks;
+    const bookmarksString = generateStringOfBookmarks(bookmarks);
+    $('.js-bookmark-list').html(bookmarksString);
     console.log('render ran', store);
   }
 

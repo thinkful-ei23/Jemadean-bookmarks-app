@@ -8,7 +8,8 @@ const store = (function() {
   };
 
   const addBookmark = function(bookmark) { 
-    this.bookmarks.push({bookmark, expanded: false});
+    bookmark.expanded = false;
+    this.bookmarks.push(bookmark);
   };
 
   return {
