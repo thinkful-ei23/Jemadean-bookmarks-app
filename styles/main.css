@@ -12,6 +12,7 @@ h1 {
 }
 
 #js-add-bookmark-form {
+  display: none;
   margin-top: 25px;
   background-color: cornflowerblue;
   padding-top: 20px;

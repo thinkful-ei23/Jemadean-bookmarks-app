@@ -52,6 +52,28 @@ const myBookmarks = (function(){
     });
   }
 
+  //Function to generate the bookmark element
+  // function generateBookmarkElement(bookmark) {
+  //   return `
+  //   <li class="js-item-element" data-bookmark-id="${bookmark.id}">
+  //       <p class="title-bar">${bookmark.title}</p> 
+  //       <div class="details-card">
+  //         <article class="details"></article>
+  //           <p class="description">${bookmark.desc}</p>
+  //           <p><a href=${bookmark.url}>Visit Site</a></p>
+  //         </article>
+  //       </div>
+  //       <p class="rating-bar">${bookmark.rating}</p>
+  //     </li>`;
+  // }
+
+  //Function to generate 
+  // function generateStringOfBookmarks(myBookmarks) {
+  //   const bookmarks = myBookmarks.map((bookmark) => generateBookmarkElement(bookmark));
+  //   return bookmarks.join('');
+  // }
+
+
   //Function to render the page 
   function render() {
     if (store.adding) {
