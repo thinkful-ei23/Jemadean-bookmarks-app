@@ -36,12 +36,12 @@ const myBookmarks = (function(){
       event.preventDefault();
       const newBookmarkData = $('#js-add-bookmark-form');
       const serializedBookmarkData = newBookmarkData.serializeJson();
-      console.log(serializedBookmarkData);//info must go to server, post to server, get info back, add 
-      //properties that are in local store, update local store with all this info, then render, otherwise
-      //there iso no persistent data yet, and page returns to where it was before anything happened.
+      console.log(serializedBookmarkData);
       api.createBookmark(serializedBookmarkData, 
         (serializedBookmarkData) => {
-          store.addBookmark(serializedBookmarkData);
+          $('#js-add-bookmark-form')[0].reset();
+          store.adding = false;
+          store.addBookmark(serializedBookmarkData);          
           render();
         },
         (err) => {
