@@ -7,8 +7,8 @@ const store = (function() {
     this.error = error;
   };
 
-  const addBookmark = function(bookmark) {
-    this.bookmarks.push(bookmark);
+  const addBookmark = function(bookmark) { 
+    this.bookmarks.push({bookmark, expanded: false});
   };
 
   return {
