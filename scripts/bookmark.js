@@ -22,7 +22,7 @@ const myBookmarks = (function(){
 
   //Function to handle add bookmark click
   function handleAddBookmarkClick(){
-    $('.add-bookmark').on('click', function(event) {
+    $('.add-bookmark').on('click', function() {
       console.log('handleAddBookmarkClick ran', store);
       store.adding = true;
       render();
@@ -134,6 +134,15 @@ const myBookmarks = (function(){
     });
   }
 
+  //Function to handle dropdown selection
+  function handleMinRatingSelection() {
+    $('select').on('change', function(){
+      store.minRating = $('select').val();
+      console.log(store.minRating, store);
+      render();
+    });
+  }
+
   //Function to render the page 
   function render() {
     if (store.adding) {
@@ -146,12 +155,15 @@ const myBookmarks = (function(){
     } else {
       $('.error-container').empty();
     }
-    
-    // render the bookmarks in the DOM
+
+    //Filter bookmark list by rating
     let bookmarks = store.bookmarks;
-    const bookmarksString = generateStringOfBookmarks(bookmarks);
-    $('.js-bookmark-list').html(bookmarksString);
+    bookmarks = store.bookmarks.filter(bookmark => bookmark.rating >= store.minRating);
     console.log('render ran', store);
+    
+    // render the bookmarks in the DOM    
+    const bookmarksString = generateStringOfBookmarks(bookmarks);
+    $('.js-bookmark-list').html(bookmarksString); 
   }
 
   function bindEventListeners() {
@@ -160,6 +172,7 @@ const myBookmarks = (function(){
     handleExpandDetailsClick();
     handleDeleteBookmarkClick();
     handleCloseError();
+    handleMinRatingSelection();
   }
 
   return {
