@@ -29,6 +29,32 @@ const myBookmarks = (function(){
     });
   }
 
+  //Function to generate error message
+  function generateError(err) {
+    let message = '';
+    if (err.responseJSON && err.responseJSON.message) {
+      message = err.responseJSON.message;
+    } else {
+      message = `${err.code} Server Error`;
+    }
+    return `
+      <section class="error-content">
+        <button id="cancel-error">X</button>
+        <p>${message}</p>
+      </section>
+      `;
+  } 
+
+  //Function to close error message
+  function handleCloseError() {
+    $('.error-container').on('click', '#cancel-error', function() {
+      store.setError(null);
+      console.log('handleCloseError ran');
+      render();
+    });
+  }
+
+
   //Function to handle create bookmark submit
   function handleCreateBookmarkSubmit(){
     $('#js-add-bookmark-form').on('submit',function(event) {
@@ -45,7 +71,7 @@ const myBookmarks = (function(){
           render();
         },
         (err) => {
-          console.log(err);
+          console.log('there has been an error', err);
           store.setError(err);
           render();
         });
@@ -113,6 +139,13 @@ const myBookmarks = (function(){
     if (store.adding) {
       $('#js-add-bookmark-form').show();
     } else {$('#js-add-bookmark-form').hide();}
+
+    if (store.error) {
+      const problem = generateError(store.error);
+      $('.error-container').html(problem);
+    } else {
+      $('.error-container').empty();
+    }
     
     // render the bookmarks in the DOM
     let bookmarks = store.bookmarks;
@@ -126,6 +159,7 @@ const myBookmarks = (function(){
     handleCreateBookmarkSubmit();
     handleExpandDetailsClick();
     handleDeleteBookmarkClick();
+    handleCloseError();
   }
 
   return {

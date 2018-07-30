@@ -2,7 +2,6 @@
 
 const store = (function() {
 
-  //Function
   const setError = function(error) {
     this.error = error;
   };
