@@ -12,6 +12,15 @@ const store = (function() {
     this.bookmarks.push(bookmark);
   };
 
+  const findById = function(id) {
+    return this.bookmarks.find(bookmark => bookmark.id === id);
+  };
+
+  const findAndUpdate = function(id, newData) {
+    const bookmark = this.findById(id);
+    Object.assign (bookmark, newData);
+  };
+
   return {
     bookmarks: [],
     error: null,
@@ -19,7 +28,9 @@ const store = (function() {
     minRating: 0,
     
     setError,
-    addBookmark
+    addBookmark, 
+    findById,
+    findAndUpdate
   };
 
 }());

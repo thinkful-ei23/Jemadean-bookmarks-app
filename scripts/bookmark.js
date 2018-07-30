@@ -54,16 +54,20 @@ const myBookmarks = (function(){
 
   //Function to generate the bookmark element
   function generateBookmarkElement(bookmark) {
+    let detailsCardClass = `hidden class="details-card js-details-card"`;
+    if (bookmark.expanded) {
+      detailsCardClass = `class="details-card js-details-card"`;
+    }
     return `
-    <li class="js-item-element" data-bookmark-id="${bookmark.id}">
-        <p class="title-bar">${bookmark.title}</p> 
-        <div class="details-card">
-          <article class="details"></article>
+    <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
+        <p class="title-bar js-title-bar">${bookmark.title}</p> 
+        <div ${detailsCardClass}>
+          <article class="details js-details"></article>
             <p class="description">${bookmark.desc}</p>
             <p><a href=${bookmark.url}>Visit Site</a></p>
           </article>
         </div>
-        <p class="rating-bar">${bookmark.rating}</p>
+        <p class="rating-bar js-rating-bar">${bookmark.rating}</p>
       </li>`;
   }
 
@@ -73,14 +77,31 @@ const myBookmarks = (function(){
     return bookmarks.join('');
   }
 
+  //Function to get ID 
+  function getBookmarkIdFromElement(bookmark) {
+    return $(bookmark)
+      .closest('.js-bookmark-element')
+      .data('bookmark-id');
+  }
+
+  //Function to update store when expand details is clicked
+  function handleExpandDetailsClick() {
+    $('.js-bookmark-list').on('click', '.js-title-bar', function(event) {
+      const id = getBookmarkIdFromElement(event.currentTarget);
+      const bookmark = store.findById(id);
+      store.findAndUpdate(id, {expanded : !bookmark.expanded});
+      console.log('handleExpandDetailsClick ran', store);
+      render();
+    });
+  }
 
   //Function to render the page 
   function render() {
     if (store.adding) {
       $('#js-add-bookmark-form').show();
-    } else $('#js-add-bookmark-form').hide();
-
-    //render the bookmarks in the DOM
+    } else {$('#js-add-bookmark-form').hide();}
+    
+    // render the bookmarks in the DOM
     let bookmarks = store.bookmarks;
     const bookmarksString = generateStringOfBookmarks(bookmarks);
     $('.js-bookmark-list').html(bookmarksString);
@@ -90,6 +111,7 @@ const myBookmarks = (function(){
   function bindEventListeners() {
     handleAddBookmarkClick();
     handleCreateBookmarkSubmit();
+    handleExpandDetailsClick();
   }
 
   return {
