@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,9 @@
 <body>
   <div="container">
     <div class="error-container"></div>
-    <h1>My Bookmarks</h1>
+    <header role="banner">
+      <h1>My Bookmarks</h1>
+    </header>
     <button type="button" class="add-bookmark">ADD BOOKMARK</button>
     <select class="minRating">  
       <option value="" selected>Minimum Rating</option>    
@@ -22,13 +24,13 @@
       <option value="2">2 Stars</option>
       <option value="1">1 Star</option>
     </select>
-    <form id="js-add-bookmark-form" name="addBookmarkForm">
-      <fieldset>
+    <form id="js-add-bookmark-form" name="addBookmarkForm" action=https://thinkful-list-api.herokuapp.com/jemadean/bookmarks method="post">
+      <fieldset name="create-a-bookmark">
         <legend>Create a Bookmark</legend>
           <div class="text-input">
-            <label for="title">Title:</label><br>
+            <label for="title" required>Title:</label><br>
             <input type="text" name="title" id="title"><br>
-            <label for="url">Website Address:</label><br>
+            <label for="url" required>Website Address:</label><br>
             <input type="text" name="url" id="url"><br>
             <label for="desc">Description:</label><br>
             <input type="text" name="desc" id="desc"><br>
