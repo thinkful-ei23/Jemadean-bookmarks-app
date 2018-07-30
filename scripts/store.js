@@ -21,6 +21,10 @@ const store = (function() {
     Object.assign (bookmark, newData);
   };
 
+  const findAndDelete = function(id) {
+    this.bookmarks = this.bookmarks.filter(item => item.id !== id);
+  };
+
   return {
     bookmarks: [],
     error: null,
@@ -30,7 +34,8 @@ const store = (function() {
     setError,
     addBookmark, 
     findById,
-    findAndUpdate
+    findAndUpdate, 
+    findAndDelete
   };
 
 }());

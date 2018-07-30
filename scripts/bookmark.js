@@ -67,7 +67,8 @@ const myBookmarks = (function(){
             <p><a href=${bookmark.url}>Visit Site</a></p>
           </article>
         </div>
-        <p class="rating-bar js-rating-bar">${bookmark.rating}</p>
+        <span class="rating js-rating">${bookmark.rating} Stars</span>
+        <button type="button" class="delete-bookmark">Delete Bookmark</button>
       </li>`;
   }
 
@@ -95,6 +96,18 @@ const myBookmarks = (function(){
     });
   }
 
+  //Function to delete bookmarks
+  function handleDeleteBookmarkClick() {
+    $('.js-bookmark-list').on('click', '.delete-bookmark', function(event) {
+      const id = getBookmarkIdFromElement(event.currentTarget); 
+      api.deleteItem(id, function() {
+        store.findAndDelete(id);
+        console.log('handleDeleteBookmarkClick ran');
+        render();
+      });
+    });
+  }
+
   //Function to render the page 
   function render() {
     if (store.adding) {
@@ -112,6 +125,7 @@ const myBookmarks = (function(){
     handleAddBookmarkClick();
     handleCreateBookmarkSubmit();
     handleExpandDetailsClick();
+    handleDeleteBookmarkClick();
   }
 
   return {

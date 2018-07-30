@@ -18,10 +18,6 @@ h1 {
   padding-top: 20px;
 }
 
-/* .details-card {
-  display: none;
-} */
-
 .text-input {
   display: inline-block;
 }
@@ -38,4 +34,9 @@ input[type="text"] {
 
 .minRating {
   margin-left: 20px;
+}
+
+.delete-bookmark {
+  font-size: 10px;
+  margin-left: 60px;
 }
