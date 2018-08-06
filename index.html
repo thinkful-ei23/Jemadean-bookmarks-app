@@ -10,13 +10,13 @@
   <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css">
 </head>
 <body>
-  <div="container">
-    <div class="error-container"></div>
-    <header role="banner">
+  <div class ="row">
+    <div class="col-12 error-container"></div>
+    <header role="banner" class="col-12">
       <h1>My Bookmarks</h1>
     </header>
-    <button type="button" class="add-bookmark">ADD BOOKMARK</button>
-    <select class="minRating">  
+    <button type="button" class="col-6 add-bookmark">ADD BOOKMARK</button>
+    <select class="col-6 minRating">  
       <option value="" selected>Minimum Rating</option>    
       <option value="5">5 Stars</option>
       <option value="4">4 Stars</option>
@@ -24,10 +24,10 @@
       <option value="2">2 Stars</option>
       <option value="1">1 Star</option>
     </select>
-    <form id="js-add-bookmark-form" name="addBookmarkForm" action=https://thinkful-list-api.herokuapp.com/jemadean/bookmarks method="post">
+    <form id="js-add-bookmark-form" class="col-12" name="addBookmarkForm" action=https://thinkful-list-api.herokuapp.com/jemadean/bookmarks method="post">
       <fieldset name="create-a-bookmark">
         <legend>Create a Bookmark</legend>
-          <div class="text-input">
+          <div class="col-6 text-input">
             <label for="title" required>Title:</label><br>
             <input type="text" name="title" id="title"><br>
             <label for="url" required>Website Address:</label><br>
@@ -35,7 +35,7 @@
             <label for="desc">Description:</label><br>
             <input type="text" name="desc" id="desc"><br>
           </div>
-          <div class="rating">
+          <div class="col-6 rating">
             <label for="rating"></label>
             <input type="radio" name="rating" value="5" checked>5 Stars<br>
             <input type="radio" name="rating" value="4">4 Stars<br>
@@ -43,14 +43,15 @@
             <input type="radio" name="rating" value="2">2 Stars<br>
             <input type="radio" name="rating" value="1">1 Star<br>
           </div>
-          <div class="newBookmarkSubmit">
+          <div class="col-6 newBookmarkSubmit">
             <input type="submit" value="Submit">
           </div>
       </fieldset>
     </form>
+    <div>
     <ul class="bookmark-list js-bookmark-list">
     </ul>
-    <div 
+    </div> 
   </div>
 
 
